@@ -36,20 +36,23 @@ function createWindow (opt = {})
 
 	let wurl = url.format(
 	{
-		pathname: __DEV__ ? 'test.draw.io' : 'www.draw.io',
-		protocol: 'https:',
+		pathname: `${__dirname}/index.html`,
+		protocol: 'file:',
 		query:
 		{
+			'dev': __DEV__ ? 1 : 0,
+			'drawdev': __DEV__ ? 1 : 0,
 			'test': __DEV__ ? 1 : 0,
 			'db': 0,
 			'gapi': 0,
 			'od': 0,
 			'gh': 0,
 			'tr': 0,
+			'analytics': 0,
 			'picker': 0,
 			'mode': 'device',
 			'browser': 0,
-			'appcache': 1
+			'export': 'https://exp.draw.io/ImageExport4/export'
 		},
 		slashes: true
 	})
@@ -109,34 +112,6 @@ function createWindow (opt = {})
 		windowsRegistry.splice(index, 1)
 	})
 	
-	mainWindow.webContents.on('did-fail-load', function(err)
-    {
-        let ourl = url.format(
-		{
-			pathname: `${__dirname}/index.html`,
-			protocol: 'file:',
-			query:
-			{
-				'dev': __DEV__ ? 1 : 0,
-				'drawdev': __DEV__ ? 1 : 0,
-				'test': __DEV__ ? 1 : 0,
-				'db': 0,
-				'gapi': 0,
-				'od': 0,
-				'gh': 0,
-				'tr': 0,
-				'analytics': 0,
-				'picker': 0,
-				'mode': 'device',
-				'browser': 0,
-				'export': 'https://exp.draw.io/ImageExport4/export'
-			},
-			slashes: true,
-		})
-		
-		mainWindow.loadURL(ourl)
-    })
-
 	return mainWindow
 }
 
@@ -200,6 +175,10 @@ app.on('ready', e =>
 	      {
 	        label: 'Support',
 	        click() { shell.openExternal('https://about.draw.io/support'); }
+				},
+				{
+	        label: 'DevTools',
+	        click() { win.webContents.openDevTools(); }
 	      },
 	      {
 	        type: 'separator'
