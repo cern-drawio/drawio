@@ -528,6 +528,10 @@ app.on('ready', e =>
 	        label: 'Support',
 	        click() { shell.openExternal('https://about.draw.io/support'); }
 		  },
+		  {
+	        label: 'DevTools',
+	        click() { win.webContents.openDevTools(); }
+		  },
 		  checkForUpdates,
 	      {
 	        type: 'separator'
@@ -670,120 +674,15 @@ autoUpdater.on('update-available', (a, b) =>
 	dialog.showMessageBox(
 	{
 		type: 'question',
-		buttons: ['Ok', 'Cancel', 'Don\'t Ask Again'],
-		title: 'Confirm Update',
-		message: 'Update available.\n\nWould you like to download and install new version?',
-		detail: 'Application will automatically restart to apply update after download',
+		buttons: ['Ok'],
+		title: 'Drawio Updater',
+		message: 'Update available.',
+		detail: 'If you need new version of Drawio, please contact service-desk@cern.ch specifying the version you need and why',
 	}, response =>
 	{
-		if (response === 0)
-		{
-			autoUpdater.downloadUpdate()
-			
-			var progressBar = new ProgressBar({
-				title: 'draw.io Update',
-			    text: 'Downloading draw.io update...',
-				browserWindow: {
-					webPreferences: {
-						nodeIntegration: true
-					}
-				}
-			});
-			
-			function reportUpdateError(e)
-			{
-				progressBar.detail = 'Error occured while fetching updates. ' + e
-				progressBar._window.setClosable(true);
-			}
-
-			autoUpdater.on('error', e => {
-				if (progressBar._window != null)
-				{
-					reportUpdateError(e);
-				}
-				else
-				{
-					progressBar.on('ready', function() {
-						reportUpdateError(e);
-					});
-				}
-			})
-
-			var firstTimeProg = true;
-			
-			autoUpdater.on('download-progress', (d) => {
-				//On mac, download-progress event is not called, so the indeterminate progress will continue until download is finished
-				log.info('@update-progress@\n', d);
-				
-				if (firstTimeProg)
-				{
-					firstTimeProg = false;
-					progressBar.close();
-
-					progressBar = new ProgressBar({
-						indeterminate: false,
-						title: 'draw.io Update',
-						text: 'Downloading draw.io update...',
-						detail: `${d.percent}% ...`,
-						initialValue: d.percent,
-						browserWindow: {
-							webPreferences: {
-								nodeIntegration: true
-							}
-						}
-					});
-				
-					progressBar
-							.on('completed', function() {
-								progressBar.detail = 'Download completed.';
-							})
-							.on('aborted', function(value) {
-								log.info(`progress aborted... ${value}`);
-							})
-							.on('progress', function(value) {
-								progressBar.detail = `${value}% ...`;
-							})
-							.on('ready', function() {
-								//InitialValue doesn't set the UI! so this is needed to render it correctly
-								progressBar.value = d.percent;
-							});
-				}
-				else 
-				{
-					progressBar.value = d.percent;
-				}
-			});
-
-		    autoUpdater.on('update-downloaded', (info) => {
-				if (!progressBar.isCompleted())
-				{
-					progressBar.close()
-				}
-		
-				log.info('@update-downloaded@\n', info)
-				// Ask user to update the app
-				dialog.showMessageBox(
-				{
-					type: 'question',
-					buttons: ['Install', 'Later'],
-					defaultId: 0,
-					message: 'A new version of ' + app.getName() + ' has been downloaded',
-					detail: 'It will be installed the next time you restart the application',
-				}, response =>
-				{
-					if (response === 0)
-					{
-						setTimeout(() => autoUpdater.quitAndInstall(), 1)
-					}
-				})
-		    });
-		}
-		else if (response === 2)
-		{
-			//save in settings don't check for updates
-			log.info('@dont check for updates!@')
-			store.set('dontCheckUpdates', true)
-		}
+		//save in settings don't check for updates
+		log.info('@dont check for updates!@')
+		store.set('dontCheckUpdates', true)
 	})
 })
 
