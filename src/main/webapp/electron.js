@@ -67,7 +67,7 @@ function createWindow (opt = {})
 			'picker': 0,
 			'mode': 'device',
 			'browser': 0,
-			'export': 'https://exp.draw.io/ImageExport4/export'
+			'export': 'https://drawio-export.web.cern.ch'
 		},
 		slashes: true
 	})
