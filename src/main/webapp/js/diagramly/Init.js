@@ -16,13 +16,13 @@ window.mxLoadSettings = window.mxLoadSettings || urlParams['configure'] != '1';
 window.isSvgBrowser = window.isSvgBrowser || (navigator.userAgent.indexOf('MSIE') < 0 || document.documentMode >= 9);
 
 // CUSTOM_PARAMETERS - URLs for save and export
-window.EXPORT_URL = window.EXPORT_URL || 'https://exp.draw.io/ImageExport4/export';
-window.PLANT_URL = window.PLANT_URL || 'https://exp-plant.draw.io/plantuml4';
-window.DRAW_MATH_URL = window.DRAW_MATH_URL || 'https://www.draw.io/math';
-window.VSD_CONVERT_URL = window.VSD_CONVERT_URL || "https://convert.draw.io/VsdConverter/api/converter";
-window.EMF_CONVERT_URL = window.EMF_CONVERT_URL || "https://convert.draw.io/emf2png/convertEMF";
-window.DRAWIO_GITLAB_URL = window.DRAWIO_GITLAB_URL || "https://gitlab.com";
-window.DRAWIO_GITLAB_ID = window.DRAWIO_GITLAB_ID || '5cdc018a32acddf6eba37592d9374945241e644b8368af847422d74c8709bc44';
+window.EXPORT_URL = window.EXPORT_URL || 'https://drawio-export.web.cern.ch';
+window.PLANT_URL = window.PLANT_URL || 'plant not supported';
+window.DRAW_MATH_URL = window.DRAW_MATH_URL || 'https://cernbox.cern.ch/byoa/drawio/math';
+window.VSD_CONVERT_URL = window.VSD_CONVERT_URL || "vsd not supported";
+window.EMF_CONVERT_URL = window.EMF_CONVERT_URL || 'emf not supported'
+window.DRAWIO_GITLAB_URL = window.DRAWIO_GITLAB_URL || "gitlab not supported";
+window.DRAWIO_GITLAB_ID = window.DRAWIO_GITLAB_ID || 'gitlab not supported';
 window.SAVE_URL = window.SAVE_URL || 'save';
 window.OPEN_URL = window.OPEN_URL || 'open';
 window.PROXY_URL = window.PROXY_URL || 'proxy';
