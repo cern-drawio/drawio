@@ -555,11 +555,6 @@ app.on('ready', e =>
 	      }]
 	}]
 	
-	if (disableUpdate)
-	{
-		template[0].submenu.splice(2, 1);
-	}
-	
 	if (process.platform === 'darwin')
 	{
 	    template = [{
@@ -573,7 +568,6 @@ app.on('ready', e =>
 	          label: 'Support',
 	          click() { shell.openExternal('https://about.draw.io/support'); }
 			},
-			checkForUpdates,
 			{ type: 'separator' },
 	        { role: 'hide' },
 	        { role: 'hideothers' },
@@ -597,11 +591,6 @@ app.on('ready', e =>
 	        selector: 'paste:'
 	      }]
 	    }]
-	    
-	    if (disableUpdate)
-		{
-			template[0].submenu.splice(2, 1);
-		}
 	}
 	
 	const menuBar = menu.buildFromTemplate(template)
