@@ -6,3 +6,6 @@
 window.VSD_CONVERT_URL = null;
 window.EMF_CONVERT_URL = null;
 window.ICONSEARCH_PATH = null;
+window.PLANT_URL = null;
+window.DRAWIO_GITLAB_URL = null;
+window.DRAWIO_GITLAB_ID = null;
