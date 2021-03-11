@@ -1,12 +1,24 @@
-/**
- * Copyright (c) 2006-2020, JGraph Ltd
- * Copyright (c) 2006-2020, draw.io AG
- */
-// Overrides of global vars need to be pre-loaded
-window.EXPORT_URL = 'REPLACE_WITH_YOUR_IMAGE_SERVER';
-window.PLANT_URL = 'REPLACE_WITH_YOUR_PLANTUML_SERVER';
-window.DRAWIO_BASE_URL = null; // Replace with path to base of deployment, e.g. https://www.example.com/folder
-window.DRAWIO_VIEWER_URL = null; // Replace your path to the viewer js, e.g. https://www.example.com/js/viewer.min.js
-window.DRAW_MATH_URL = 'math';
-window.DRAWIO_CONFIG = null; // Replace with your custom draw.io configurations. For more details, https://www.diagrams.net/doc/faq/configure-diagram-editor
-urlParams['sync'] = 'manual';
+(function() {
+    try {
+      var s = document.createElement('meta');
+      s.setAttribute('content', 'default-src \'self\'; script-src \'self\' https://storage.googleapis.com https://apis.google.com https://docs.google.com https://code.jquery.com \'unsafe-inline\'; connect-src \'self\' https://*.dropboxapi.com https://api.trello.com https://api.github.com https://raw.githubusercontent.com https://*.googleapis.com https://*.googleusercontent.com https://graph.microsoft.com https://*.1drv.com https://*.sharepoint.com https://gitlab.com https://*.google.com https://fonts.gstatic.com https://fonts.googleapis.com; img-src * data:; media-src * data:; font-src * about:; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com;');
+      s.setAttribute('http-equiv', 'Content-Security-Policy');
+      var t = document.getElementsByTagName('meta')[0];
+      t.parentNode.insertBefore(s, t);
+    } catch (e) {} // ignore
+  })();
+  window.EXPORT_URL = 'https://cernbox.cern.ch/byoa/drawioexport';
+  window.PLANT_URL = 'https://cernbox.cern.ch/byoa/drawioplant';
+  window.DRAWIO_BASE_URL = 'https://cernbox.cern.ch/byoa/drawio';
+  window.DRAWIO_VIEWER_URL = 'https://cernbox.cern.ch/byoa/drawio';
+  window.DRAWIO_LIGHTBOX_URL = 'https://cernbox.cern.ch/byoa/drawio';
+  window.NOTIFICATIONS_URL = 'https://cernbox.cern.ch/byoa/drawionotifications';
+  window.DRAW_MATH_URL = 'math';
+  window.DRAWIO_CONFIG = null;
+  urlParams['sync'] = 'manual'; //Disable Real-Time
+  urlParams['db'] = '0'; //dropbox
+  urlParams['gh'] = '0'; //github
+  urlParams['tr'] = '0'; //trello
+  urlParams['gapi'] = '0'; //Google Drive
+  urlParams['od'] = '0'; //OneDrive
+  urlParams['gl'] = '0'; //Gitlab

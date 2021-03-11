@@ -43,7 +43,7 @@ var queryObj = {
 	'browser': 0,
 	'picker': 0,
 	'mode': 'device',
-	'export': 'https://convert.diagrams.net/node/export'
+	'export': 'https://cernbox.cern.ch/byoa/drawioexport'
 };
 
 try
